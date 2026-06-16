@@ -18,8 +18,6 @@ int  main(){
         default:
             printf("Invalid choice.\n");
     }
-
-    login();
     return 0;
     
 }
