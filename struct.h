@@ -15,7 +15,3 @@ typedef struct
     char password[100];
 }userRegister;
 
-typedef 
-{
-    
-}userRole;
