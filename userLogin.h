@@ -5,10 +5,9 @@ userRegister user_register;
 void login(){
 
     printf("\n=============== Login Form ============\n");
-    printf("Enter Phone Number : ");
-    scanf("%d",&user.phone_number);
-    printf("Enter password : ");
-    scanf("%d",&user.password);
+    printf("Enter Phone Number : ");    scanf("%d",&user.phone_number);
+    printf("Enter password : ");    scanf("%d",&user.password);
+    
 }
 
 void registe(){

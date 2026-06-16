@@ -14,3 +14,8 @@ typedef struct
     char gender[20];
     char password[100];
 }userRegister;
+
+typedef 
+{
+    
+}userRole;
