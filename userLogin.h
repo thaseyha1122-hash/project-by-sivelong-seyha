@@ -1,7 +1,7 @@
 #include "struct.h"
 #include<stdio.h>
 userLogin user;
-userRegister register;
+userRegister user_register;
 void login(){
 
     printf("\n=============== Login Form ============\n");
@@ -11,10 +11,10 @@ void login(){
     scanf("%d",&user.password);
 }
 
-void register(){
+void registe(){
     printf("\n =============== Register Form ============= \n");
-    printf("Enter Your Name : ");   scanf("%s",&register.name);
-    printf("Enter Your Gender : ");  scanf("%s",&register.gender);
-    printf("Enter Phone Number : ");    scanf("%s",&register.phone);
-    printf("Enter password : ");    scanf("%s",&register.password);
+    printf("Enter Your Name : ");   scanf("%s",&user_register.name);
+    printf("Enter Your Gender : ");  scanf("%s",&user_register.gender);
+    printf("Enter Phone Number : ");    scanf("%s",&user_register.phone);
+    printf("Enter password : ");    scanf("%s",&user_register.password);
 }
