@@ -11,7 +11,7 @@ void login(){
     scanf("%d",&user.password);
 }
 
-void registe(){
+void Register(){
     printf("\n =============== Register Form ============= \n");
     printf("Enter Your Name : ");   scanf("%s",&user_register.name);
     printf("Enter Your Gender : ");  scanf("%s",&user_register.gender);
