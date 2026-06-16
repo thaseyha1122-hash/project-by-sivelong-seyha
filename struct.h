@@ -1,18 +1,14 @@
+typedef enum {PASSENGER = 1, DRIVER, ADMIN} userRole;
 
-
-typedef struct 
+typedef struct
 {
-    int phone_number;
-    int password;
-}userLogin;
-
-
-typedef struct 
-{
+    int id;
     char name[100];
-    char phone[100];
-    char gender[20];
-    char password[100];
-}userRegister;
+    char phone[20];
+    char password[20];
+    userRole role;
+    float balance;
+    float rating;
+    int totalRides;
+} user;
 
-typedef enum { PASSENGER=1, DRIVER, ADMIN} userRole;

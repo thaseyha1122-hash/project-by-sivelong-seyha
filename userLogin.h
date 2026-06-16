@@ -1,7 +1,7 @@
 #include "struct.h"
 #include<stdio.h>
-userLogin user;
-userRegister user_register;
+user user;
+user user_register;
 void login(){
 
     printf("\n=============== Login Form ============\n");
