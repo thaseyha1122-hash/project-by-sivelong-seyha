@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include "userLogin.h"
-
+#include "Passanger/passagenerMenu.h"
 int  main(){
 
     int choices;
@@ -14,11 +14,12 @@ int  main(){
             break;
         case 2:
             Register();
+            passagenerMenu();
             break;
         default:
             printf("Invalid choice.\n");
     }
-    
+
     return 0;
     
 }
