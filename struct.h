@@ -15,7 +15,5 @@ typedef struct
     char password[100];
 }userRegister;
 
-typedef 
-{
-    
-}userRole;
+typedef enum{PASSENGGER = 1, DRIVER, ADMIN} userRole;
+
