@@ -1,4 +1,9 @@
+#ifndef STRUCT_H
+#define STRUCT_H
+
 typedef enum {PASSENGER = 1, DRIVER, ADMIN} userRole;
+
+
 
 typedef struct
 {
@@ -11,5 +16,7 @@ typedef struct
     float balance;
     float rating;
     int totalRides;
+    
 } User;
 
+#endif

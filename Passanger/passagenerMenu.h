@@ -6,6 +6,5 @@ void passagenerMenu(){
     printf("2.Booking \n");
     printf("3.My Booking\n");
     printf("4.Exit\n");
-    printf("Enter Your Choice : ");
-    scanf("%d",&choice);
+    printf("Enter Your Choice : "); scanf("%d",&choice);
 }
