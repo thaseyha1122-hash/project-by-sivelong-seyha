@@ -13,7 +13,7 @@ int  main(){
             login();
             break;
         case 2:
-            registe();
+            Register();
             break;
         default:
             printf("Invalid choice.\n");
