@@ -1,9 +1,16 @@
 #include<stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #include "userLogin.h"
-// #include "saveData.h"
+
 #include "Passanger/passagenerMenu.h"
+#include "Data.h"
+
+
+int userCount = 0;
+
 int main(){
+    LoadUserCount();
 
     int choices;
     printf("\n===================Manu choices====================\n");
