@@ -1,34 +1,56 @@
-#include<stdio.h>
+#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include "userLogin.h"
-
-#include "Passanger/passagenerMenu.h"
 #include "Data.h"
 
-
+// Global declarations
+User users[100];
 int userCount = 0;
+int loggedInuser = -1;
 
 int main(){
     LoadUserCount();
 
-    int choices;
-    printf("\n===================Manu choices====================\n");
-    printf(" 1. Login \n");
-    printf(" 2. Register \n");
-    printf("Enter your choice : "); scanf("%d", &choices);
-    getchar();
-    switch(choices) {
-        case 1:
-            login();
-            break;
-        case 2:
-            Register();
-            //passagenerMenu();
-            break;
-        default:
-            printf("Invalid choice.\n");
-    }
+
+    int choice;
+    printf("╔══════════════════════════════════════════╗\n");
+    printf("║      CAR BOOKING SEYSTEM MANAGEMENT      ║\n");
+    printf("╚══════════════════════════════════════════╝\n");
+    // printf("\n===================MANU CHOICES====================\n");
+    // printf(" 1. Login \n");
+    // printf(" 2. Register \n");
+    // printf("Enter your choice : "); scanf("%d", &choice);
+    // getchar();
+    // switch(choice) {
+    //     case 1:
+    //         login();
+    //         break;
+    //     case 2:
+    //         Register();
+    //         //passagenerMenu();
+    //         break;
+    //     default:
+    //         printf("Invalid choice.\n");
+    //}
+
+    do {
+        printf("\n===================MANU CHOICES====================\n");
+        printf(" 1. Login \n");
+        printf(" 2. Register \n");
+        printf(" 0. Exit\n");
+        printf("Enter your choice : ");
+        scanf("%d", &choice);
+        getchar();
+        switch (choice)
+        {
+        case 1:     login();    break;
+        case 2:     Register(); break; 
+        case 0:     printf("\nGoodbye!\n");   break;
+        default:    printf("Invalid choice.\n");
+        }
+
+    } while(choice!=0);
 
     return 0;
     

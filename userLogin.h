@@ -5,35 +5,74 @@
 #include <stdio.h>
 #include <string.h>
 #include "Data.h"
-User user;
-User users[100];
+#include "Passanger/passangerMenu.h"
+extern User users[100];
 extern int userCount;
-//int UserCount = 0;
+extern int loggedInuser;
+
+
+int login_check(const char *phone, const char *pass) {
+    LoadData();
+    for (int i = 0; i < userCount; i++) {
+        if (strcmp(users[i].phone, phone) == 0 && strcmp(users[i].password, pass) == 0) {
+            return i;
+        }
+    }
+    return -1;
+}
 
 void login(){
-    
+    char *phone = malloc(20), *pass = malloc(20);
     printf("\n=============== Login Form ============\n");
-    printf("Enter Phone Number : ");    scanf("%19s", user.phone);
-    printf("Enter password : ");    scanf("%19s", user.password);
+    printf("Enter Phone Number : ");    scanf("%s", phone);
+    printf("Enter password : ");    scanf("%s", pass);
+
+    int tmp = login_check(phone, pass);
+    if(tmp<0) {
+        printf("Invalid\n");
+        free(phone);
+        free(pass);
+        return;
+    }
+    loggedInuser = tmp;
+    passangerMenu();
+
+    free(phone);
+    free(pass);
+    phone = NULL;
+    pass = NULL;
     
 }
 
+
+
 void Register(){
+    if(userCount >= 100) {
+        printf("\nError: User limit reached! Cannot register more users.\n");
+        return;
+    }
 
     User *u = &users[userCount];
 
     printf("\n =============== Register Form ============= \n");
-    printf("Enter Your Name : ");   scanf("%[^\n]", u->name);
-    getchar();  // Clear the newline from input buffer
+    printf("Enter Your Name : ");   scanf("%99[^\n]", u->name);
+    getchar();
     printf("Enter Your Gender : ");  scanf("%9s", u->gender);
+    getchar();
     printf("Enter Phone Number : ");    scanf("%19s", u->phone);
+    getchar();
     printf("Enter password : ");    scanf("%19s", u->password);
+    getchar();
 
     u->id = 2000 + userCount;
     u->role = PASSENGER;
+    u->balance = 10;
+    u->rating = 0;
+    u->totalRides = 0;
 
     
     SaveData(u);
+    printf("\nRegistration successful! Your ID: %d\n", u->id);
 
 }
 
