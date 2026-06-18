@@ -8,9 +8,12 @@
 User users[100];
 int userCount = 0;
 int loggedInuser = -1;
+int carCount = 0;
 
+Car cars[10];
 
 int main(){
+    createDefaultAdmin();
     LoadUserCount();
 
 

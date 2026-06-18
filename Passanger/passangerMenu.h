@@ -19,8 +19,7 @@ void passangerMenu(){
         printf("3.  My Booking\n");
         printf("4.  Top up balance\n");
         printf("0.  Exit\n");
-        printf("Enter Your Choice : "); 
-        scanf("%d", &choice);
+        printf("Enter Your Choice : "); scanf("%d", &choice);
         getchar();
         
         switch(choice) {

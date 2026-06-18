@@ -6,6 +6,7 @@
 #include <string.h>
 #include "Data.h"
 #include "Passanger/passangerMenu.h"
+#include "Admin/adminMenu.h"
 extern User users[100];
 extern int userCount;
 extern int loggedInuser;
@@ -22,6 +23,9 @@ int login_check(const char *phone, const char *pass) {
 }
 
 void login(){
+
+    LoadData();
+
     char *phone = malloc(20), *pass = malloc(20);
     printf("\n=============== Login Form ============\n");
     printf("Enter Phone Number : ");    scanf("%s", phone);
@@ -37,11 +41,26 @@ void login(){
         return;
     }
     loggedInuser = tmp;
-    // if(role == admin){
-    //     adminMenu();
+    
+    if(users[loggedInuser].role == ADMIN){
+        adminMenu();
+        free(phone);
+        free(pass);
+        phone = NULL;
+        pass = NULL;
+        return;
+    }
+    // else if(users[loggedInuser].role == DRIVER) {
+    //     passangerMenu();
     // }
-    passangerMenu();
-
+    else{
+        passangerMenu();
+        free(phone);
+        free(pass);
+        phone = NULL;
+        pass = NULL;
+        return;
+    }
     free(phone);
     free(pass);
     phone = NULL;

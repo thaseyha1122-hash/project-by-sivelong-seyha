@@ -2,10 +2,9 @@
 #ifndef ADDCAR_H
 #include "../struct.h"
 #include <stdio.h>
-#include "../CarData"
 
-Car cars[10];
-int carCount = 0;
+extern Car car[10];
+extern int carCount;
 
 void addCar(){
     Car *u = &car[carCount];

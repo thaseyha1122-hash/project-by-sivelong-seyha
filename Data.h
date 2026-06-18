@@ -9,6 +9,9 @@ extern int userCount;
 extern User users[100];
 extern int carCount;
 
+//ADMIN DATA
+void seedAdmininIfne();
+
 //USER COUNT
 
 void SaveUserCount() {
@@ -27,11 +30,13 @@ void LoadUserCount() {
 
 //USER DATA
 
-void LoadData() {
-    FILE *fptr = fopen("data.csv", "r");
-    if (!fptr) return;
+void LoadData()
+{
+    FILE *fptr = fopen("data.txt", "r");
+    if (!fptr)
+        return;
     int i = 0;
-    
+
     // Clear previous data
     memset(users, 0, sizeof(users));
 
@@ -100,6 +105,32 @@ void SaveData(User *u) {
 
     fclose(fptr);
     userCount++;
+    SaveUserCount();
+}
+
+void createDefaultAdmin()
+{
+    for (int i = 0; i < userCount; i++)
+    {
+        if (users[i].role == ADMIN)
+            return; // already exists
+    }
+
+
+    User *u = &users[userCount++];
+    u->id = 1000;
+
+    strcpy(u->name, "Admin");
+    strcpy(u->gender, "N/A");
+    strcpy(u->phone, "0000");
+    strcpy(u->password, "admin123");
+
+    u->role = ADMIN;
+    u->balance = 0;
+    u->rating = 5;
+    u->totalRides = 0;
+
+    UpdateData();
     SaveUserCount();
 }
 

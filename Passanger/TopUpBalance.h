@@ -1,3 +1,6 @@
+#ifndef TOPUP_BALANCE_H
+#define TOPUP_BALANCE_H
+
 #include "../struct.h"
 #include <stdio.h>
 #include "../Data.h"
@@ -14,5 +17,7 @@ void TopUp() {
     users[loggedInuser].balance += balance;
 
     UpdateData();
-    printf("Balance updated successfully!\n");
+    printf("Balance updated to : %.2f!\n", users[loggedInuser].balance);
 }
+
+#endif

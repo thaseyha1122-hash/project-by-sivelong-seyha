@@ -1,6 +1,7 @@
-#define ADMINMENU_H
 #ifndef ADMINMENU_H
+#define ADMINMENU_H
 #include "addCar.h"
+#include <stdio.h>
 
 void adminMenu(){
     int choice;
@@ -14,19 +15,20 @@ void adminMenu(){
     printf("0. Logout\n");
 
     printf("Enter Your choice : ");    scanf("%d", &choice);
+    getchar();
     
-    switch (choice) {
-    case 1:
-        addCar();
-        break;
-    case 2:
-        viewAllcar();
-        break;
-    case 3:
-        deleteCar();
-    default:
-        break;
-    }
+    // switch (choice) {
+    // case 1:
+    //     addCar();
+    //     break;
+    // case 2:
+    //     viewAllcar();
+    //     break;
+    // case 3:
+    //     deleteCar();
+    // default:
+    //     break;
+    // }
 }
 
 #endif
