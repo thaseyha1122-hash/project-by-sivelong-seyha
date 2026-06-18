@@ -13,7 +13,6 @@ void TopUp() {
     
     users[loggedInuser].balance += balance;
 
-    User *u = &users[loggedInuser];
-    UpdateData(u);
+    UpdateData();
     printf("Balance updated successfully!\n");
 }

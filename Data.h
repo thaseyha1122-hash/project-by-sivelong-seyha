@@ -48,25 +48,21 @@ void LoadData() {
     fclose(fptr);
 }
 
-void UpdateData(User *u) {
+void UpdateData() {
     FILE *fptr = fopen("data.txt", "w");
     if (!fptr) { printf("Error: could not save data.\n"); return; }
     
     for (int i = 0; i < userCount; i++) {
-        fprintf(fptr, "%d|%s|%s|%s|%s|%d|%.2f|%.2f|%d",
-                u->id,
-                u->name,
-                u->gender,
-                u->phone,
-                u->password,
-                u->role,
-                u->balance,
-                u->rating,
-                u->totalRides);
-        
-        if (i < userCount - 1) {
-            fprintf(fptr, "\n");
-        }
+        fprintf(fptr, "%d|%s|%s|%s|%s|%d|%.2f|%.2f|%d\n",
+                users[i].id,
+                users[i].name,
+                users[i].gender,
+                users[i].phone,
+                users[i].password,
+                users[i].role,
+                users[i].balance,
+                users[i].rating,
+                users[i].totalRides);
     }
     
     fclose(fptr);
