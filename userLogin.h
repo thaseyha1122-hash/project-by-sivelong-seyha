@@ -32,6 +32,8 @@ void login(){
         printf("Invalid\n");
         free(phone);
         free(pass);
+        phone = NULL;
+        pass = NULL;
         return;
     }
     loggedInuser = tmp;
