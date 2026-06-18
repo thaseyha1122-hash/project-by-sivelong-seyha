@@ -37,6 +37,9 @@ void login(){
         return;
     }
     loggedInuser = tmp;
+    // if(role == admin){
+    //     adminMenu();
+    // }
     passangerMenu();
 
     free(phone);
@@ -63,6 +66,9 @@ void Register(){
     getchar();
     printf("Enter Phone Number : ");    scanf("%19s", u->phone);
     getchar();
+    for(int i=0; i<userCount; i++) {
+        if(strcmp(users[i].phone, u->phone) == 0) {printf("\nPhone already registered.\n"); return;}
+    }
     printf("Enter password : ");    scanf("%19s", u->password);
     getchar();
 

@@ -7,23 +7,28 @@
 
 extern int userCount;
 extern User users[100];
+extern int carCount;
+
+//USER COUNT
 
 void SaveUserCount() {
-    FILE *fptr = fopen("usercount.txt", "w");
+    FILE *fptr = fopen("usercount.csv", "w");
     if (!fptr) { printf("Warning: could not save user count.\n"); return; }
     fprintf(fptr, "%d", userCount);
     fclose(fptr);
 }
 
 void LoadUserCount() {
-    FILE *fptr = fopen("usercount.txt", "r");
+    FILE *fptr = fopen("usercount.csv", "r");
     if (!fptr) { userCount = 0; return; }
     fscanf(fptr, "%d", &userCount);
     fclose(fptr);
 }
 
+//USER DATA
+
 void LoadData() {
-    FILE *fptr = fopen("data.txt", "r");
+    FILE *fptr = fopen("data.csv", "r");
     if (!fptr) return;
     int i = 0;
     
@@ -49,7 +54,7 @@ void LoadData() {
 }
 
 void UpdateData() {
-    FILE *fptr = fopen("data.txt", "w");
+    FILE *fptr = fopen("data.csv", "w");
     if (!fptr) { printf("Error: could not save data.\n"); return; }
     
     for (int i = 0; i < userCount; i++) {
@@ -69,8 +74,17 @@ void UpdateData() {
 }
 
 void SaveData(User *u) {
-    FILE *fptr = fopen("data.txt", "a");
+    FILE *fptr = fopen("data.csv", "a");
     if (!fptr) { printf("Warning: could not save data.\n"); return; }
+    // Check if file is empty → write header once
+    fseek(fptr, 0, SEEK_END);
+    long size = ftell(fptr);
+
+    if (size == 0)
+    {
+        fprintf(fptr,
+        "ID|Name|Gender|Phone|Password|Role|Balance|Rating|TotalRides\n");
+    }
 
     fprintf(fptr, "%d|%s|%s|%s|%s|%d|%.2f|%.2f|%d\n",
             u->id,
@@ -88,5 +102,53 @@ void SaveData(User *u) {
     userCount++;
     SaveUserCount();
 }
+
+//CAR DATA 
+
+void SavecarCount()
+{
+    FILE *fptr = fopen("carcount.csv", "w");
+    if (!fptr)
+    {
+        printf("Warning: could not save car count.\n");
+        return;
+    }
+    fprintf(fptr, "%d", carCount);
+    fclose(fptr);
+}
+
+void LoadcarCount()
+{
+    FILE *fptr = fopen("carcount.csv", "r");
+    if (!fptr)
+    {
+        carCount = 0;
+        return;
+    }
+    fscanf(fptr, "%d", &carCount);
+    fclose(fptr);
+}
+
+void CarSave(Car *u){
+    FILE *f = fopen("CarData.h", "a");
+    if (!f) {printf("Warning: could not save ddata.\n");}
+
+    fprintf(f, "%d\t|%s\t|%s\t|%s\t|%s\t|%s\t|%d\t|%.2f\t|%s\n",
+            u->id,
+            u->pickup,
+            u->dropoff,
+            u->pickupTime,
+            u->dropTime,
+            u->model,
+            u->seatAvailable,
+            u->price,
+            u->travelTime
+        );
+
+    fclose(f);
+    carCount++;
+    SavecarCount();
+}
+
 
 #endif
