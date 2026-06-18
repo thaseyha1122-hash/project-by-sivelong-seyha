@@ -19,7 +19,7 @@ void profile_display() {
     printf("Name: %s\n", u->name);
     printf("Gender: %s\n", u->gender);
     printf("Phone: %s\n", u->phone);
-    printf("Balance: %.2f\n", u->balance);
+    printf("Balance: %.2f $\n", u->balance);
     printf("Rating: %.2f\n", u->rating);
     printf("Total Rides: %d\n", u->totalRides);
     printf("===================================\n");

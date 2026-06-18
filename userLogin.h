@@ -68,11 +68,10 @@ void Register(){
 
     u->id = 2000 + userCount;
     u->role = PASSENGER;
-    u->balance = 10;
+    u->balance = 1;
     u->rating = 0;
     u->totalRides = 0;
 
-    
     SaveData(u);
     printf("\nRegistration successful! Your ID: %d\n", u->id);
 
