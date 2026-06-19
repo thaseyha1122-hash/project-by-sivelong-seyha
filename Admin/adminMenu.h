@@ -17,18 +17,17 @@ void adminMenu(){
     printf("Enter Your choice : ");    scanf("%d", &choice);
     getchar();
     
-    // switch (choice) {
-    // case 1:
-    //     addCar();
-    //     break;
+    switch (choice) {
+    case 1:
+        addCar(); break;
     // case 2:
     //     viewAllcar();
     //     break;
     // case 3:
     //     deleteCar();
-    // default:
-    //     break;
-    // }
+    default:
+        break;
+    }
 }
 
 #endif
