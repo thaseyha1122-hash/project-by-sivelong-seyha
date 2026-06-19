@@ -162,21 +162,50 @@ void LoadcarCount()
     fclose(fptr);
 }
 
+void LoadCarData()
+{
+    FILE *fptr = fopen("CarData.csv", "r");
+    if (!fptr)
+        return;
+    int i = 0;
+
+    // Clear previous data
+    memset(cars, 0, sizeof(cars));
+
+    while (fscanf(fptr, "%d\t|%99[^|]\t|%99[^|]\t|%99[^|]\t|%99[^|]\t|%99[^|]\t|%99[^|]\t|%.2f\t|%d\n",
+                  cars[i].id,
+                  cars[i].pickup,
+                  cars[i].dropoff,
+                  cars[i].travelTime,
+                  cars[i].pickupTime,
+                  cars[i].dropTime,
+                  cars[i].model,
+                  cars[i].price,
+                  cars[i].seatAvailable) == 9)
+    {
+        i++;
+    }
+
+    carCount = i;
+    fclose(fptr);
+}
+
 void CarSave(Car *u){
-    FILE *f = fopen("CarData.h", "a");
+    FILE *f = fopen("CarData.csv", "a");
     if (!f) {printf("Warning: could not save ddata.\n");}
 
-    fprintf(f, "%d\t|%s\t|%s\t|%s\t|%s\t|%s\t|%d\t|%.2f\t|%s\n",
+    fprintf(f, "%d\t|%s\t|%s\t|%s\t|%s\t|%s\t|%s\t|%.2f\t|%d\n",
             u->id,
             u->pickup,
             u->dropoff,
+            u->travelTime,
             u->pickupTime,
             u->dropTime,
             u->model,
-            u->seatAvailable,
             u->price,
-            u->travelTime
-        );
+            u->seatAvailable
+
+    );
 
     fclose(f);
     carCount++;
