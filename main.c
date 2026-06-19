@@ -8,31 +8,21 @@
 User users[100];
 int userCount = 0;
 int loggedInuser = -1;
+int carCount = 0;
+
+Car cars[10];
 
 int main(){
     LoadUserCount();
+    LoadData();
+    createDefaultAdmin();
+    
 
 
     int choice;
-    printf("╔══════════════════════════════════════════╗\n");
-    printf("║      CAR BOOKING SEYSTEM MANAGEMENT      ║\n");
-    printf("╚══════════════════════════════════════════╝\n");
-    // printf("\n===================MANU CHOICES====================\n");
-    // printf(" 1. Login \n");
-    // printf(" 2. Register \n");
-    // printf("Enter your choice : "); scanf("%d", &choice);
-    // getchar();
-    // switch(choice) {
-    //     case 1:
-    //         login();
-    //         break;
-    //     case 2:
-    //         Register();
-    //         //passagenerMenu();
-    //         break;
-    //     default:
-    //         printf("Invalid choice.\n");
-    //}
+    printf("======================||======================\n");
+    printf("||      CAR BOOKING SEYSTEM MANAGEMENT      ||\n");
+    printf("======================||======================\n");
 
     do {
         printf("\n===================MANU CHOICES====================\n");
@@ -42,12 +32,11 @@ int main(){
         printf("Enter your choice : ");
         scanf("%d", &choice);
         getchar();
-        switch (choice)
-        {
-        case 1:     login();    break;
-        case 2:     Register(); break; 
-        case 0:     printf("\nGoodbye!\n");   break;
-        default:    printf("Invalid choice.\n");
+        switch (choice) {
+            case 1:     login();    break;
+            case 2:     Register(); break; 
+            case 0:     printf("\nGoodbye!\n");   break;
+            default:    printf("Invalid choice.\n");
         }
 
     } while(choice!=0);

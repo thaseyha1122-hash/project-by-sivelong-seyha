@@ -6,6 +6,7 @@
 #include <string.h>
 #include "Data.h"
 #include "Passanger/passangerMenu.h"
+#include "Admin/adminMenu.h"
 extern User users[100];
 extern int userCount;
 extern int loggedInuser;
@@ -22,6 +23,9 @@ int login_check(const char *phone, const char *pass) {
 }
 
 void login(){
+
+    LoadData();
+
     char *phone = malloc(20), *pass = malloc(20);
     printf("\n=============== Login Form ============\n");
     printf("Enter Phone Number : ");    scanf("%s", phone);
@@ -32,11 +36,31 @@ void login(){
         printf("Invalid\n");
         free(phone);
         free(pass);
+        phone = NULL;
+        pass = NULL;
         return;
     }
     loggedInuser = tmp;
-    passangerMenu();
-
+    
+    if(users[loggedInuser].role == ADMIN){
+        adminMenu();
+        free(phone);
+        free(pass);
+        phone = NULL;
+        pass = NULL;
+        return;
+    }
+    // else if(users[loggedInuser].role == DRIVER) {
+    //     passangerMenu();
+    // }
+    else{
+        passangerMenu();
+        free(phone);
+        free(pass);
+        phone = NULL;
+        pass = NULL;
+        return;
+    }
     free(phone);
     free(pass);
     phone = NULL;
@@ -61,16 +85,18 @@ void Register(){
     getchar();
     printf("Enter Phone Number : ");    scanf("%19s", u->phone);
     getchar();
+    for(int i=0; i<userCount; i++) {
+        if(strcmp(users[i].phone, u->phone) == 0) {printf("\nPhone already registered.\n"); return;}
+    }
     printf("Enter password : ");    scanf("%19s", u->password);
     getchar();
 
     u->id = 2000 + userCount;
     u->role = PASSENGER;
-    u->balance = 10;
+    u->balance = 1;
     u->rating = 0;
     u->totalRides = 0;
 
-    
     SaveData(u);
     printf("\nRegistration successful! Your ID: %d\n", u->id);
 
