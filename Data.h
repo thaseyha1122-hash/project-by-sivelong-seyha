@@ -2,6 +2,7 @@
 #define DATA_H
 
 #include "struct.h"
+#include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -32,7 +33,7 @@ void LoadUserCount() {
 
 void LoadData()
 {
-    FILE *fptr = fopen("data.txt", "r");
+    FILE *fptr = fopen("data.csv", "r");
     if (!fptr)
         return;
     int i = 0;
@@ -74,7 +75,7 @@ void UpdateData() {
                 users[i].rating,
                 users[i].totalRides);
     }
-    
+    LoadUserCount();
     fclose(fptr);
 }
 
@@ -82,14 +83,14 @@ void SaveData(User *u) {
     FILE *fptr = fopen("data.csv", "a");
     if (!fptr) { printf("Warning: could not save data.\n"); return; }
     // Check if file is empty → write header once
-    fseek(fptr, 0, SEEK_END);
-    long size = ftell(fptr);
+    // fseek(fptr, 0, SEEK_END);
+    // long size = ftell(fptr);
 
-    if (size == 0)
-    {
-        fprintf(fptr,
-        "ID|Name|Gender|Phone|Password|Role|Balance|Rating|TotalRides\n");
-    }
+    // if (size == 0)
+    // {
+    //     fprintf(fptr,
+    //     "ID|Name|Gender|Phone|Password|Role|Balance|Rating|TotalRides\n");
+    // }
 
     fprintf(fptr, "%d|%s|%s|%s|%s|%d|%.2f|%.2f|%d\n",
             u->id,
@@ -112,10 +113,10 @@ void createDefaultAdmin()
 {
     for (int i = 0; i < userCount; i++)
     {
-        if (users[i].role == ADMIN)
+        if (users[i].role == ADMIN) {
             return; // already exists
+        }  
     }
-
 
     User *u = &users[userCount++];
     u->id = 1000;
@@ -130,8 +131,9 @@ void createDefaultAdmin()
     u->rating = 5;
     u->totalRides = 0;
 
-    UpdateData();
-    SaveUserCount();
+    userCount--;
+    SaveData(u);
+    
 }
 
 //CAR DATA 
