@@ -2,7 +2,7 @@
 #define ADMINMENU_H
 #include "addCar.h"
 #include <stdio.h>
-
+#include "viewallCar.h"
 void adminMenu(){
     int choice;
     printf("\n========== ADMIN MENU ==========\n");
@@ -20,9 +20,9 @@ void adminMenu(){
     switch (choice) {
     case 1:
         addCar(); break;
-    // case 2:
-    //     viewAllcar();
-    //     break;
+    case 2:
+        viewAllcar();
+        break;
     // case 3:
     //     deleteCar();
     default:

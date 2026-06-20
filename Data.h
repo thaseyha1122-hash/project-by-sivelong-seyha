@@ -10,6 +10,7 @@ extern int userCount;
 extern User users[100];
 extern int carCount;
 
+extern Car cars[10];
 //ADMIN DATA
 void seedAdmininIfne();
 
