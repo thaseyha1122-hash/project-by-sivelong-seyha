@@ -11,6 +11,9 @@ void boarder() {
 }
 
 void viewAllcar() {
+
+    LoadcarCount();
+    LoadCarData();
     printf("\n========== ALL CARS ==========\n");
 
     printf("\n%-5s %-5s %-15s %-15s %-12s %-12s %-12s %-12s %-10s %-10s\n",
@@ -29,6 +32,7 @@ void viewAllcar() {
         cars[i].pickup,
         cars[i].dropoff,
         cars[i].travelTime,
+        cars[i].pickupTime,
         cars[i].dropTime,
         cars[i].model,
         cars[i].price,

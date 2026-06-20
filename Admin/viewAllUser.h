@@ -1,10 +1,12 @@
 #ifndef VIEWALLUSER_H
 #define VIEWALLUSER_H
+
 #include <stdio.h>
 #include "../Data.h"
 
 extern int userCount;
 extern User users[100];
+
 void viewAllUser()
 {
     LoadUserCount();
@@ -16,20 +18,23 @@ void viewAllUser()
     }
 
     printf("\n========== USER LIST ==========\n");
-
+    printf("%-5s %-5s %-15s %-10s %-15s %-10s %-10s %-10s %-10s\n",
+           "No", "ID", "Name", "Gender", "Phone",
+           "Role", "Balance", "Rating", "Rides");
+    
     for (int i = 0; i < userCount; i++)
     {
         User *u = &users[i];
-        printf("ID          : %d\n", u->id);
-        printf("Name        : %s\n", u->name);
-        printf("Gender      : %s\n", u->gender);
-        printf("Phone       : %s\n", u->phone);
-        printf("Password    : %s\n", u->password);
-        printf("Role        : %d\n", u->role);
-        printf("Balance     : %.2f\n", u->balance);
-        printf("Rating      : %.2f\n", u->rating);
-        printf("Total Rides : %d\n", u->totalRides);
-        printf("-------------------------------\n");
+        printf("%-5d %-5d %-15s %-10s %-15s %-10d %-10.2f %-10.2f %-10d\n",
+               i + 1,
+               u->id,
+               u->name,
+               u->gender,
+               u->phone,
+               u->role,
+               u->balance,
+               u->rating,
+               u->totalRides);
     }
 }
 

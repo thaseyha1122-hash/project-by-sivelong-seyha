@@ -36,8 +36,11 @@ void LoadUserCount() {
 void LoadData()
 {
     FILE *fptr = fopen("data.csv", "r");
-    if (!fptr)
+    if (!fptr) {
+        userCount = 0;
+        memset(users, 0, sizeof(users));
         return;
+    }
     int i = 0;
 
     // Clear previous data
@@ -167,23 +170,26 @@ void LoadcarCount()
 void LoadCarData()
 {
     FILE *fptr = fopen("CarData.csv", "r");
-    if (!fptr)
+    if (!fptr) {
+        carCount = 0;
+        memset(cars, 0, sizeof(cars));
         return;
+    }
     int i = 0;
 
     // Clear previous data
     memset(cars, 0, sizeof(cars));
 
-    while (fscanf(fptr, "%d\t|%99[^|]\t|%99[^|]\t|%99[^|]\t|%99[^|]\t|%99[^|]\t|%99[^|]\t|%.2f\t|%d\n",
-                  cars[i].id,
+    while (fscanf(fptr, "%d|%99[^|]|%99[^|]|%99[^|]|%99[^|]|%99[^|]|%99[^|]|%.2f|%d\n",
+                  &cars[i].id,
                   cars[i].pickup,
                   cars[i].dropoff,
                   cars[i].travelTime,
                   cars[i].pickupTime,
                   cars[i].dropTime,
                   cars[i].model,
-                  cars[i].price,
-                  cars[i].seatAvailable) == 9)
+                  &cars[i].price,
+                  &cars[i].seatAvailable) == 9)
     {
         i++;
     }
@@ -194,9 +200,12 @@ void LoadCarData()
 
 void CarSave(Car *u){
     FILE *f = fopen("CarData.csv", "a");
-    if (!f) {printf("Warning: could not save ddata.\n");}
+    if (!f) {
+        printf("Warning: could not save data.\n");
+        return;
+    }
 
-    fprintf(f, "%d\t|%s\t|%s\t|%s\t|%s\t|%s\t|%s\t|%.2f\t|%d\n",
+    fprintf(f, "%d|%s|%s|%s|%s|%s|%s|%.2f|%d\n",
             u->id,
             u->pickup,
             u->dropoff,
@@ -206,7 +215,6 @@ void CarSave(Car *u){
             u->model,
             u->price,
             u->seatAvailable
-
     );
 
     fclose(f);

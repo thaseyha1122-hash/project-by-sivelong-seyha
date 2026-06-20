@@ -13,9 +13,10 @@ int carCount = 0;
 Car cars[10];  // just add
 
 int main(){
-
     LoadUserCount();
     LoadData();
+    LoadcarCount();
+    LoadCarData();
     createDefaultAdmin();
     
 
