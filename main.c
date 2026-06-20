@@ -13,11 +13,11 @@ int carCount = 0;
 Car cars[10];  // just add
 
 int main(){
+
     LoadUserCount();
     LoadData();
     createDefaultAdmin();
     
-
 
     int choice;
     printf("======================||======================\n");

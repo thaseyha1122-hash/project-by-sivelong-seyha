@@ -2,7 +2,6 @@
 #define ADDCAR_H
 #include "../struct.h"
 #include "../Data.h"
-void adminMenu();
 #include <stdio.h>
 
 extern Car cars[10];

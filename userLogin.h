@@ -99,7 +99,7 @@ void Register(){
     u->totalRides = 0;
 
     SaveData(u);
-    printf("\nRegistration successful! Your ID: %d\n", u->id);
+    printf("\nRegistration successful! You get 1$.\n");
 
 }
 

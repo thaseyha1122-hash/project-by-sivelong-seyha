@@ -142,7 +142,7 @@ void createDefaultAdmin()
 
 void SavecarCount()
 {
-    FILE *fptr = fopen("carcount.csv", "w");
+    FILE *fptr = fopen("carCount.csv", "w");
     if (!fptr)
     {
         printf("Warning: could not save car count.\n");
@@ -154,7 +154,7 @@ void SavecarCount()
 
 void LoadcarCount()
 {
-    FILE *fptr = fopen("carcount.csv", "r");
+    FILE *fptr = fopen("carCount.csv", "r");
     if (!fptr)
     {
         carCount = 0;
