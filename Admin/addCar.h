@@ -2,6 +2,7 @@
 #define ADDCAR_H
 #include "../struct.h"
 #include "../Data.h"
+void adminMenu();
 #include <stdio.h>
 
 extern Car cars[10];
@@ -21,10 +22,9 @@ void addCar(){
     printf("Seat Avaible : ");  scanf(" %d", &u->seatAvailable); getchar();
 
     u->id = 001 + carCount;
-
-    
     CarSave(u);
     printf("Car added successfully!\n");
+    
 }
 
 #endif

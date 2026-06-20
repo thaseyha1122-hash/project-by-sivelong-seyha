@@ -2,7 +2,7 @@
 #define ADMINMENU_H
 #include "addCar.h"
 #include <stdio.h>
-
+#include "viewallCar.h"
 void adminMenu(){
     int choice;
     do {
@@ -36,6 +36,20 @@ void adminMenu(){
 
     } while(choice != 0);
     
+<<<<<<< HEAD
+=======
+    switch (choice) {
+    case 1:
+        addCar(); break;
+    case 2:
+        viewAllcar();
+        break;
+    // case 3:
+    //     deleteCar();
+    default:
+        break;
+    }
+>>>>>>> 047c3776d76560fd4239cd96ac7c0416f1d64659
 }
 
 #endif
