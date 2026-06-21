@@ -45,7 +45,7 @@ void LoadData()
     // Clear previous data
     memset(users, 0, sizeof(users));
 
-    while (fscanf(fptr, "%d|%99[^|]|%9[^|]|%19[^|]|%19[^|]|%d|%f|%f|%d",
+    while (i<100 && fscanf(fptr, "%d|%99[^|]|%9[^|]|%19[^|]|%19[^|]|%d|%f|%f|%d",
                   &users[i].id,
                   users[i].name,
                   users[i].gender,
@@ -110,6 +110,33 @@ void SaveData(User *u) {
 
     fclose(fptr);
     userCount++;
+    SaveUserCount();
+}
+
+void SaveData2()
+{
+    FILE *fptr = fopen("data.csv", "w");
+    if (!fptr)
+    {
+        printf("Warning: could not save data.\n");
+        return;
+    }
+
+    for (int i = 0; i < userCount; i++)
+    {
+        fprintf(fptr, "%d|%s|%s|%s|%s|%d|%.2f|%.2f|%d\n",
+                users[i].id,
+                users[i].name,
+                users[i].gender,
+                users[i].phone,
+                users[i].password,
+                users[i].role,
+                users[i].balance,
+                users[i].rating,
+                users[i].totalRides);
+    }
+
+    fclose(fptr);
     SaveUserCount();
 }
 
