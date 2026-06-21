@@ -79,8 +79,9 @@ void UpdateData() {
                 users[i].rating,
                 users[i].totalRides);
     }
-    //LoadUserCount();
+    
     fclose(fptr);
+    SaveUserCount();
 }
 
 void SaveData(User *u) {
