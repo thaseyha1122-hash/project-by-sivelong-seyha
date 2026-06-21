@@ -45,7 +45,7 @@ void LoadData()
     // Clear previous data
     memset(users, 0, sizeof(users));
 
-    while (i<100 && fscanf(fptr, "%d|%99[^|]|%9[^|]|%19[^|]|%19[^|]|%d|%f|%f|%d",
+    while (i<100 && fscanf(fptr, "%d|%99[^|]|%9[^|]|%19[^|]|%19[^|]|%d|%f|%f|%d|%99[^|]",
                   &users[i].id,
                   users[i].name,
                   users[i].gender,
@@ -54,7 +54,8 @@ void LoadData()
                   &users[i].role,
                   &users[i].balance,
                   &users[i].rating,
-                  &users[i].totalRides) == 9)
+                  &users[i].totalRides,
+                  users[i].modelCar) == 10)
     {
         i++;
     }
@@ -68,7 +69,7 @@ void UpdateData() {
     if (!fptr) { printf("Error: could not save data.\n"); return; }
     
     for (int i = 0; i < userCount; i++) {
-        fprintf(fptr, "%d|%s|%s|%s|%s|%d|%.2f|%.2f|%d\n",
+        fprintf(fptr, "%d|%s|%s|%s|%s|%d|%.2f|%.2f|%d|%s\n",
                 users[i].id,
                 users[i].name,
                 users[i].gender,
@@ -77,7 +78,9 @@ void UpdateData() {
                 users[i].role,
                 users[i].balance,
                 users[i].rating,
-                users[i].totalRides);
+                users[i].totalRides,
+                users[i].modelCar
+            );
     }
     
     fclose(fptr);
@@ -87,17 +90,8 @@ void UpdateData() {
 void SaveData(User *u) {
     FILE *fptr = fopen("data.csv", "a");
     if (!fptr) { printf("Warning: could not save data.\n"); return; }
-    // Check if file is empty → write header once
-    // fseek(fptr, 0, SEEK_END);
-    // long size = ftell(fptr);
 
-    // if (size == 0)
-    // {
-    //     fprintf(fptr,
-    //     "ID|Name|Gender|Phone|Password|Role|Balance|Rating|TotalRides\n");
-    // }
-
-    fprintf(fptr, "%d|%s|%s|%s|%s|%d|%.2f|%.2f|%d\n",
+    fprintf(fptr, "%d|%s|%s|%s|%s|%d|%.2f|%.2f|%d|%s\n",
             u->id,
             u->name,
             u->gender,
@@ -106,7 +100,8 @@ void SaveData(User *u) {
             u->role,
             u->balance,
             u->rating,
-            u->totalRides
+            u->totalRides,
+            u->modelCar
         );
 
     fclose(fptr);
@@ -114,32 +109,7 @@ void SaveData(User *u) {
     SaveUserCount();
 }
 
-void SaveData2()
-{
-    FILE *fptr = fopen("data.csv", "w");
-    if (!fptr)
-    {
-        printf("Warning: could not save data.\n");
-        return;
-    }
 
-    for (int i = 0; i < userCount; i++)
-    {
-        fprintf(fptr, "%d|%s|%s|%s|%s|%d|%.2f|%.2f|%d\n",
-                users[i].id,
-                users[i].name,
-                users[i].gender,
-                users[i].phone,
-                users[i].password,
-                users[i].role,
-                users[i].balance,
-                users[i].rating,
-                users[i].totalRides);
-    }
-
-    fclose(fptr);
-    SaveUserCount();
-}
 
 void createDefaultAdmin()
 {
@@ -162,6 +132,7 @@ void createDefaultAdmin()
     u->balance = 0;
     u->rating = 5;
     u->totalRides = 0;
+    strcpy(u->modelCar, "N/A");
 
     userCount--;
     SaveData(u);
@@ -225,6 +196,31 @@ void LoadCarData()
     fclose(fptr);
 }
 
+void UpdateCarData()
+{
+    FILE *f = fopen("CarData.csv", "w");
+    if (!f)
+    {
+        printf("Warning: could not save data.\n");
+        return;
+    }
+    for (int i=0; i<carCount; i++) {
+        fprintf(f, "%03d|%s|%s|%s|%s|%s|%s|%.2f|%d\n",
+                cars[i].id,
+                cars[i].pickup,
+                cars[i].dropoff,
+                cars[i].travelTime,
+                cars[i].pickupTime,
+                cars[i].dropTime,
+                cars[i].model,
+                cars[i].price,
+                cars[i].seatAvailable);
+    }
+
+    fclose(f);
+    SavecarCount();
+}
+
 void CarSave(Car *u){
     FILE *f = fopen("CarData.csv", "a");
     if (!f) {
@@ -232,7 +228,7 @@ void CarSave(Car *u){
         return;
     }
 
-    fprintf(f, "%d|%s|%s|%s|%s|%s|%s|%.2f|%d\n",
+    fprintf(f, "%03d|%s|%s|%s|%s|%s|%s|%.2f|%d\n",
             u->id,
             u->pickup,
             u->dropoff,

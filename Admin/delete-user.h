@@ -18,8 +18,8 @@ void deleteUser() {
                 *u = users[j+1];
                 u->id = uid;
             }
-            userCount --;
-            SaveData2();
+            userCount--;
+            UpdateData();
             printf("User deleted.\n");
             return;
         }
