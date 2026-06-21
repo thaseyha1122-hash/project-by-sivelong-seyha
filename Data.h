@@ -11,7 +11,6 @@ extern User users[100];
 extern int carCount;
 extern Car cars[10];
 
-extern Car cars[10];
 //ADMIN DATA
 void seedAdmininIfne();
 
@@ -80,7 +79,7 @@ void UpdateData() {
                 users[i].rating,
                 users[i].totalRides);
     }
-    LoadUserCount();
+    //LoadUserCount();
     fclose(fptr);
 }
 
@@ -180,7 +179,7 @@ void LoadCarData()
     // Clear previous data
     memset(cars, 0, sizeof(cars));
 
-    while (fscanf(fptr, "%d|%99[^|]|%99[^|]|%99[^|]|%99[^|]|%99[^|]|%99[^|]|%.2f|%d\n",
+    while (fscanf(fptr, "%d|%99[^|]|%99[^|]|%99[^|]|%99[^|]|%99[^|]|%99[^|]|%f|%d\n",
                   &cars[i].id,
                   cars[i].pickup,
                   cars[i].dropoff,
