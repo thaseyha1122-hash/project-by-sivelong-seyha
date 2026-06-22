@@ -14,6 +14,7 @@ extern int loggedInuser;
 
 
 int login_check(const char *phone, const char *pass) {
+    
     LoadData();
     for (int i = 0; i < userCount; i++) {
         if (strcmp(users[i].phone, phone) == 0 && strcmp(users[i].password, pass) == 0) {
@@ -24,7 +25,7 @@ int login_check(const char *phone, const char *pass) {
 }
 
 void login(){
-
+    
     LoadData();
 
     char *phone = malloc(20), *pass = malloc(20);
@@ -72,6 +73,7 @@ void login(){
 
 
 void Register(){
+    LoadUserCount();
     LoadData();
 
     if(userCount >= 100) {
@@ -82,16 +84,16 @@ void Register(){
     User *u = &users[userCount];
 
     printf("\n =============== Register Form ============= \n");
-    printf("Enter Your Name : ");   scanf("%99[^\n]", u->name);
+    printf("Enter Your Name : ");   scanf(" %99[^\n]", u->name);
     getchar();
-    printf("Enter Your Gender : ");  scanf("%9s", u->gender);
+    printf("Enter Your Gender : ");  scanf(" %9s", u->gender);
     getchar();
-    printf("Enter Phone Number : ");    scanf("%19s", u->phone);
+    printf("Enter Phone Number : ");    scanf(" %19s", u->phone);
     getchar();
     for(int i=0; i<userCount; i++) {
         if(strcmp(users[i].phone, u->phone) == 0) {printf("\nPhone already registered.\n"); return;}
     }
-    printf("Enter password : ");    scanf("%19s", u->password);
+    printf("Enter password : ");    scanf(" %19s", u->password);
     getchar();
 
     u->id = 2000 + userCount;
@@ -99,7 +101,9 @@ void Register(){
     u->balance = 1;
     u->rating = 0;
     u->totalRides = 0;
-    strcpy(u->modelCar, "N/A");
+    u->modelCar[0] = '\0';
+    strcat(u->modelCar, "N/A");
+    
 
     SaveData(u);
     printf("\nRegistration successful! You get 1$.\n");
