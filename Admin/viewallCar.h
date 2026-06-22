@@ -6,8 +6,8 @@
 extern int carCount;
 extern Car cars[10];
 
-void boarder() {
-    printf("\n------------------------------------------------------------------------------------------------------------------------\n");
+void boarder2() {
+    printf("------------------------------------------------------------------------------------------------------------------------\n");
 }
 
 void viewAllcar() {
@@ -19,7 +19,7 @@ void viewAllcar() {
     printf("\n%-5s %-5s %-15s %-15s %-18s %-12s %-12s %-12s %-10s %-10s\n",
        "No", "ID", "Pickup", "Dropoff", "Travel-Period", "Pick Time",
        "Drop Time", "Model", "Price", "Seats");
-       boarder();
+       boarder2();
     if (carCount == 0) {
         printf("\t\t\tNo cars available.\n");
         return;
@@ -37,6 +37,7 @@ void viewAllcar() {
         cars[i].model,
         cars[i].price,
         cars[i].seatAvailable);
+        boarder2();
     }
 }
 

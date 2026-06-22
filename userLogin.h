@@ -72,6 +72,8 @@ void login(){
 
 
 void Register(){
+    LoadData();
+
     if(userCount >= 100) {
         printf("\nError: User limit reached! Cannot register more users.\n");
         return;
@@ -97,6 +99,7 @@ void Register(){
     u->balance = 1;
     u->rating = 0;
     u->totalRides = 0;
+    strcpy(u->modelCar, "N/A");
 
     SaveData(u);
     printf("\nRegistration successful! You get 1$.\n");

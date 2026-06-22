@@ -15,8 +15,10 @@ typedef struct
     float balance;
     float rating;
     int totalRides;
-    
+    char modelCar[20];
+
 } User;
+
 
 typedef struct {
     int bookingID;
@@ -38,7 +40,6 @@ typedef struct{
     int seatAvailable;
     float price;
     char travelTime[20];
-
 } Car;
 
 #endif
