@@ -45,7 +45,7 @@ void LoadData()
     // Clear previous data
     memset(users, 0, sizeof(users));
 
-    while (i<100 && fscanf(fptr, "%d|%99[^|]|%9[^|]|%19[^|]|%19[^|]|%d|%f|%f|%d|%99[^|]",
+    while (i<100 && fscanf(fptr, "%d|%99[^|]|%9[^|]|%19[^|]|%19[^|]|%d|%f|%f|%d|%99[^\n]",
                   &users[i].id,
                   users[i].name,
                   users[i].gender,
