@@ -43,7 +43,7 @@ void addDriver()
     getchar();
 
     u->id = 2000 + userCount;
-    u->role = PASSENGER;
+    u->role = DRIVER;
     u->balance = 0;
     u->rating = 0;
     u->totalRides = 0;

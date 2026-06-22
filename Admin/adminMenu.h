@@ -19,18 +19,13 @@ void Register();
 
 void adminMenu() {
     int choice;
+    int i;
     do {
         printf("\n========== ADMIN MENU ==========\n");
-        printf("1.  Add Car\n");
-        printf("2.  View All Cars\n");
-        printf("3.  Delete Car\n");
-        printf("4.  View All Users\n");
-        printf("5.  Delete user\n");
-        printf("6.  View All Bookings\n");
-        printf("7.  Update Car\n");
-        printf("8.  Add user\n");
-        printf("9.  Update user\n");
-        printf("10. Add driver\n");
+        printf("1.  Car views\n");
+        printf("2.  User views\n");
+        printf("3.  View All Bookings\n");
+        printf("4.  Add driver\n");
         printf("0.  Logout\n");
 
         printf("Enter Your choice : ");    scanf("%d", &choice);
@@ -39,30 +34,73 @@ void adminMenu() {
         switch (choice)
         {
             case 1:
-                addCar();
+                do {
+                    printf("\n==================Car Views==================\n");
+                    printf ("1. Add Car\n");
+                    printf ("2. Delete Car\n");
+                    printf ("3. update Car\n");
+                    printf ("4. View All Cars\n");
+                    printf ("0. Back\n");
+                    printf ("Enter choice : "); scanf("%d", &i);
+
+                    switch (i) {
+                        case 1:
+                            addCar();
+                            break;
+                        case 2:
+                            deleteCar();
+                            break;
+                        case 3:
+                            updateCar();
+                            break;
+                        case 4:
+                            viewAllcar();
+                            break;
+                        case 0:
+                            break;
+                        default:
+                            printf("Invalid choice!\n");
+                            break;
+                    }
+                } while (i != 0);
                 break;
+
             case 2:
-                viewAllcar();
+                do
+                {
+                    printf("\n==================User Views==================\n");
+                    printf("1. Add User\n");
+                    printf("2. Delete User\n");
+                    printf("3. update User\n");
+                    printf("4. View All Users\n");
+                    printf("0. Back\n");
+                    printf("Enter choice : ");
+                    scanf("%d", &i);
+
+                    switch (i)
+                    {
+                    case 1:
+                        Register();
+                        break;
+                    case 2:
+                        deleteUser();
+                        break;
+                    case 3:
+                        updateUser();
+                        break;
+                    case 4:
+                        viewAllUser();
+                        break;
+                    case 0:
+                        break;
+                    default:
+                        printf("Invalid choice!\n");
+                        break;
+                    }
+                } while (i != 0);
                 break;
-            case 3:
-                deleteCar();
-                break;
+            
             case 4:
-                viewAllUser();
-                break;
-            case 5:
-                deleteUser();
-                break;
-            case 7:
-                updateCar();
-                break;
-            case 8:
-                Register();
-                break;
-            case 9:
-                updateUser();
-                break;
-            case 10:
                 addDriver();
                 break;
             case 0:
