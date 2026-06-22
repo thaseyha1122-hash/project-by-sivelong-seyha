@@ -18,6 +18,7 @@ void passangerMenu(){
         printf("2.  Booking \n");
         printf("3.  My Booking\n");
         printf("4.  Top up balance\n");
+        printf("5.  ViewBooking\n");
         printf("0.  Exit\n");
         printf("Enter Your Choice : "); scanf("%d", &choice);
         getchar();
@@ -34,6 +35,9 @@ void passangerMenu(){
                 break;
             case 4:
                 TopUp();
+                break;
+            case 5:
+                view_booking();
                 break;
             case 0:
                 printf("Thank you for using our service!\n");
