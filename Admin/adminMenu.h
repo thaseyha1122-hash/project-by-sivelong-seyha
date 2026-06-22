@@ -8,7 +8,8 @@
 #include "updateUser.h"
 #include "updateCar.h"
 #include "../userLogin.h"
-#include "delete-car.h"
+#include "deleteCar.h"
+#include "deleteUser.h"
 #include "addDriver.h"
 
 extern User users[100];

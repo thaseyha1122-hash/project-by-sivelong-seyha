@@ -1,3 +1,6 @@
+#ifndef DELETEUSER_H
+#define DELETEUSER_H
+
 #include <stdio.h>
 #include "../struct.h"
 #include "../Data.h"
@@ -26,3 +29,5 @@ void deleteUser() {
     }
     printf("User not found! \n");
 }
+
+#endif

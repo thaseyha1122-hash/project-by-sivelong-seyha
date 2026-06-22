@@ -1,3 +1,6 @@
+#ifndef DELETECAR_H
+#define DELETECAR_h
+
 #include <stdio.h>
 #include "../struct.h"
 #include "../Data.h"
@@ -24,3 +27,5 @@ void deleteCar() {
     }
     printf("Car not found! \n");
 }
+
+#endif
