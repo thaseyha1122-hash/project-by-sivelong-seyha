@@ -1,6 +1,9 @@
 #ifndef USERLOGIN_H
 #define USERLOGIN_H
-
+#include <unistd.h>
+//time sleep
+#include <conio.h>
+//getch
 #include "struct.h"
 #include <stdio.h>
 #include <string.h>
@@ -26,25 +29,40 @@ int login_check(const char *phone, const char *pass) {
 
 void login(){
     
+    
     LoadData();
 
     char *phone = malloc(20), *pass = malloc(20);
-    printf("\n=============== Login Form ============\n");
-    printf("Enter Phone Number : ");    scanf("%s", phone);
-    printf("Enter password : ");    scanf("%s", pass);
+    printf("\n======================  Login Form ===================== \n\n");
+    printf("\t\tEnter Phone Number : ");    scanf("%s", phone);
+    printf("\n\t\tEnter password : ");    scanf("%s", pass);
 
     int tmp = login_check(phone, pass);
+    system("cls");
+    printf("\n\t Checking.");
+    for(int i =0;i<3;i++){
+            sleep(1.2);
+            printf(".");
+        }
+    system("cls");
     if(tmp<0) {
-        printf("Invalid\n");
+        printf("\nLogin Failed...\n");
+        
         free(phone);
         free(pass);
         phone = NULL;
         pass = NULL;
-        return;
+        // return;
+        login();
     }
     loggedInuser = tmp;
     
     if(users[loggedInuser].role == ADMIN){
+        printf("\nLogin Successfully\n");
+        printf("\n\t============================================================\n");
+        printf("\t        PRESS ANY KEY TO DISPLAY MENU\n");
+        printf("\t============================================================");
+        getch();   
         adminMenu();
         free(phone);
         free(pass);
@@ -56,6 +74,8 @@ void login(){
     //     passangerMenu();
     // }
     else{
+        printf("\nLogin Successfully\n");
+    
         passangerMenu();
         free(phone);
         free(pass);

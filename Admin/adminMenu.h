@@ -21,8 +21,9 @@ void Register();
 void adminMenu() {
     int choice;
     int i;
+    system("cls");
     do {
-        printf("\n========== ADMIN MENU ==========\n");
+        printf("\n======================== ADMIN MENU =====================\n");
         printf("1.  Car views\n");
         printf("2.  User views\n");
         printf("3.  View All Bookings\n");
@@ -36,7 +37,8 @@ void adminMenu() {
         {
             case 1:
                 do {
-                    printf("\n==================Car Views==================\n");
+                    viewAllcar();
+                    // printf("\n==================================== Car Views================================\n\n");
                     printf ("1. Add Car\n");
                     printf ("2. Delete Car\n");
                     printf ("3. update Car\n");
@@ -69,7 +71,8 @@ void adminMenu() {
             case 2:
                 do
                 {
-                    printf("\n==================User Views==================\n");
+                    // printf("\n================== User Views ==================\n");
+                    viewAllUser();
                     printf("1. Add User\n");
                     printf("2. Delete User\n");
                     printf("3. update User\n");

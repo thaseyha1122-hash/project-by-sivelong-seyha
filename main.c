@@ -19,20 +19,21 @@ int main(){
     LoadCarData();
     createDefaultAdmin();
     
-
+    system("cls");
     int choice;
-    printf("======================||======================\n");
-    printf("||      CAR BOOKING SEYSTEM MANAGEMENT      ||\n");
-    printf("======================||======================\n");
+    printf("============================================||=========================================\n");
+    printf("||                             CAR BOOKING SEYSTEM MANAGEMENT                         ||\n");
+    printf("============================================||=========================================\n");
 
     do {
-        printf("\n===================MANU CHOICES====================\n");
+        printf("\n==================================== MANU CHOICES =====================================\n");
         printf(" 1. Login \n");
         printf(" 2. Register \n");
         printf(" 0. Exit\n");
         printf("Enter your choice : ");
         scanf("%d", &choice);
         getchar();
+        system("cls");
         switch (choice) {
             case 1:     login();    break;
             case 2:     Register(); break; 
@@ -41,7 +42,7 @@ int main(){
         }
 
     } while(choice!=0);
-
+    
     return 0;
     
 }

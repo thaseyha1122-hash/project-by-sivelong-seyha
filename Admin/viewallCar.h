@@ -14,12 +14,13 @@ void viewAllcar() {
 
     LoadcarCount();
     LoadCarData();
-    printf("\n========== ALL CARS ==========\n");
+    printf("\n============================================= LIST ALL CAR ============================================================\n");
 
     printf("\n%-5s %-5s %-15s %-15s %-18s %-12s %-12s %-12s %-10s %-10s\n",
        "No", "ID", "Pickup", "Dropoff", "Travel-Period", "Pick Time",
        "Drop Time", "Model", "Price", "Seats");
-       boarder2();
+    printf("\n=======================================================================================================================\n\n");
+    boarder2();
     if (carCount == 0) {
         printf("\t\t\tNo cars available.\n");
         return;
