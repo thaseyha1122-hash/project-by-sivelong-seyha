@@ -61,7 +61,7 @@ void updateCar(){
                 scanf("%f",&cars[index].price);
                 break;
             case 8:
-                printf("New Seat Available : ");
+                printf("New Total Seat Available : ");
                 scanf("%d", &cars[index].seatAvailable);
                 break;
             case 0:

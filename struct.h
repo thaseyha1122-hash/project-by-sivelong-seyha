@@ -2,7 +2,11 @@
 #define STRUCT_H
 
 typedef enum {PASSENGER = 1, DRIVER, ADMIN} userRole;
-
+// typedef enum
+// {
+//     NO_AVAILABLE = 0,
+//     AVAILABLE 
+// } SeatStatus;
 
 typedef struct
 {
@@ -29,6 +33,7 @@ typedef struct {
     float fare;
     int status; // 0: Pending, 1: Confirmed, 2: Completed, 3: Cancelled
 } Booking;
+ 
 
 typedef struct{
     int id;
@@ -40,6 +45,9 @@ typedef struct{
     int seatAvailable;
     float price;
     char travelTime[20];
+    int TotalSeat;
+    int *seatStatus;
 } Car;
+
 
 #endif

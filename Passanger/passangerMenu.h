@@ -28,7 +28,7 @@ void passangerMenu(){
                 profile_display();
                 break;
             case 2:
-                create_booking();
+                //create_booking();
                 break;
             case 3:
                 my_booking_display();
@@ -37,7 +37,7 @@ void passangerMenu(){
                 TopUp();
                 break;
             case 5:
-                view_booking();
+                //view_booking();
                 break;
             case 0:
                 printf("Thank you for using our service!\n");
@@ -49,3 +49,4 @@ void passangerMenu(){
 }
 
 #endif
+

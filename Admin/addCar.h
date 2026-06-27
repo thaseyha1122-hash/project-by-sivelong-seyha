@@ -18,9 +18,20 @@ void addCar(){
     printf("Drop Time (HH-MM-SS) : "); scanf("%[^\n]",u->dropTime); getchar();
     printf("Model : "); scanf(" %[^\n]", u->model); getchar();
     printf("Price : "); scanf("%f", &u->price); getchar();
-    printf("Seat Avaible : ");  scanf(" %d", &u->seatAvailable); getchar();
+    printf("Total Seat Available : ");  scanf(" %d", &u->seatAvailable); getchar();
 
     u->id = 001 + carCount;
+    u->TotalSeat = u->seatAvailable;
+    u->seatStatus = (int*)malloc(u->TotalSeat * sizeof(int));
+    if(u->seatStatus == NULL) {
+        printf("Failed.");
+        return;
+    }
+    for(int i=0; i<u->TotalSeat; i++) {
+        u->seatStatus[i] = 0;
+    }
+    // free(u->seatStatus);
+    // u->seatStatus = 0;
     CarSave(u);
     printf("Car added successfully!\n");
     

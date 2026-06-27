@@ -10,8 +10,25 @@ extern int userCount;
 extern User users[100];
 extern int carCount;
 extern Car cars[10];
+// extern int seatCount;
 
-
+// Save data seat
+// void SaveSeatCount(){
+//     FILE *fseat = fopen("seatcount.csv", "w");
+//     if(!fseat){
+//         printf("Warning !\n");
+//         return ;
+//     }
+//     fprintf(fseat, "%d",seatCount);
+//     fclose(fseat);
+// }
+//load seat
+// void loadSeatCount(){
+//     FILE *fseat = fopen("seatcount.csv", "r");
+//     if (!fseat) { userCount = 0; return; }
+//     fscanf(fseat, "%d", &seatCount);
+//     fclose(fseat);
+// }
 
 //USER COUNT
 
@@ -177,7 +194,7 @@ void LoadCarData()
     // Clear previous data
     memset(cars, 0, sizeof(cars));
 
-    while (fscanf(fptr, "%d|%99[^|]|%99[^|]|%99[^|]|%99[^|]|%99[^|]|%99[^|]|%f|%d\n",
+    while (fscanf(fptr, "%d|%99[^|]|%99[^|]|%99[^|]|%99[^|]|%99[^|]|%99[^|]|%f|%d|%d\n",
                   &cars[i].id,
                   cars[i].pickup,
                   cars[i].dropoff,
@@ -186,7 +203,8 @@ void LoadCarData()
                   cars[i].dropTime,
                   cars[i].model,
                   &cars[i].price,
-                  &cars[i].seatAvailable) == 9)
+                  &cars[i].seatAvailable,
+                  &cars[i].TotalSeat) == 10)
     {
         i++;
     }
@@ -204,7 +222,7 @@ void UpdateCarData()
         return;
     }
     for (int i=0; i<carCount; i++) {
-        fprintf(f, "%03d|%s|%s|%s|%s|%s|%s|%.2f|%d\n",
+        fprintf(f, "%03d|%s|%s|%s|%s|%s|%s|%.2f|%d|%d|",
                 cars[i].id,
                 cars[i].pickup,
                 cars[i].dropoff,
@@ -213,8 +231,15 @@ void UpdateCarData()
                 cars[i].dropTime,
                 cars[i].model,
                 cars[i].price,
-                cars[i].seatAvailable);
+                cars[i].seatAvailable,
+                cars[i].TotalSeat);
+        for (int j = 0; j < cars[i].TotalSeat; j++)
+        {
+            fprintf(f, "%d,", cars[i].seatStatus[j]);
+        }
+        fprintf(f, "\n");
     }
+    
 
     fclose(f);
     SavecarCount();
@@ -227,7 +252,7 @@ void CarSave(Car *u){
         return;
     }
 
-    fprintf(f, "%03d|%s|%s|%s|%s|%s|%s|%.2f|%d\n",
+    fprintf(f, "%03d|%s|%s|%s|%s|%s|%s|%.2f|%d|%d|",
             u->id,
             u->pickup,
             u->dropoff,
@@ -236,8 +261,13 @@ void CarSave(Car *u){
             u->dropTime,
             u->model,
             u->price,
-            u->seatAvailable
+            u->seatAvailable,
+            u->TotalSeat
     );
+    for(int i=0; i<u->TotalSeat; i++) {
+        fprintf(f, "%d,", u->seatStatus[i]);
+    }
+    fprintf(f, "\n");
 
     fclose(f);
     carCount++;
