@@ -37,7 +37,7 @@ void passangerMenu(){
                 TopUp();
                 break;
             case 5:
-                //view_booking();
+                view_booking();
                 break;
             case 0:
                 printf("Thank you for using our service!\n");
