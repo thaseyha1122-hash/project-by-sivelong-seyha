@@ -46,7 +46,7 @@ typedef struct{
     float price;
     char travelTime[20];
     int TotalSeat;
-    int *seatStatus;
+    char **seatStatus;
 } Car;
 
 
