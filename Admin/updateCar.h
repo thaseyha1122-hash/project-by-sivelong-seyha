@@ -34,11 +34,11 @@ void updateCar(){
             switch (choice){
             case 1:
                 printf("New Pickup Location : ");
-                scanf("%s",cars[index].pickup);
+                scanf("%[^\n]", cars[index].pickup);
                 break;
             case 2 :
                 printf("New Dropoff location : ");
-                scanf("%s",cars[index].dropoff);
+                scanf("%[^\n]", cars[index].dropoff);
                 break;
             case 3:
                 printf("New Travel Time : ");
@@ -54,7 +54,7 @@ void updateCar(){
                 break;
             case 6:
                 printf("New Model Car : ");
-                scanf("%s",cars[index].model);
+                scanf("%[^\n]", cars[index].model);
                 break;
             case 7:
                 printf("New Price : ");

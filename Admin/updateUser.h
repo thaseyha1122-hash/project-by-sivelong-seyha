@@ -36,15 +36,15 @@ void updateUser(){
             {
             case 1:
                 printf("New Name : ");
-                scanf("%s", users[index].name);
+                scanf("%[^\n]", users[index].name);
                 break;
             case 2:
                 printf("New Phone Number : ");
-                scanf("%s", users[index].phone);
+                scanf("%[^\n]", users[index].phone);
                 break;
             case 3:
                 printf("New Password : ");
-                scanf("%s", users[index].password);
+                scanf("%[^\n]", users[index].password);
                 break;
             case 4:
                 printf("New Balance : ");

@@ -42,10 +42,10 @@ void adminMenu() {
                     printf ("1. Add Car\n");
                     printf ("2. Delete Car\n");
                     printf ("3. update Car\n");
-                    printf ("4. View All Cars\n");
+                    // printf ("4. View All Cars\n");
                     printf ("0. Back\n");
                     printf ("Enter choice : "); scanf("%d", &i);
-
+                    
                     switch (i) {
                         case 1:
                             addCar();
@@ -56,9 +56,9 @@ void adminMenu() {
                         case 3:
                             updateCar();
                             break;
-                        case 4:
-                            viewAllcar();
-                            break;
+                        // case 4:
+                        //     viewAllcar();
+                        //     break;
                         case 0:
                             break;
                         default:
@@ -76,7 +76,7 @@ void adminMenu() {
                     printf("1. Add User\n");
                     printf("2. Delete User\n");
                     printf("3. update User\n");
-                    printf("4. View All Users\n");
+                    // printf("4. View All Users\n");
                     printf("0. Back\n");
                     printf("Enter choice : ");
                     scanf("%d", &i);
@@ -92,9 +92,9 @@ void adminMenu() {
                     case 3:
                         updateUser();
                         break;
-                    case 4:
-                        viewAllUser();
-                        break;
+                    // case 4:
+                    //     viewAllUser();
+                    //     break;
                     case 0:
                         break;
                     default:
