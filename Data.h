@@ -5,6 +5,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 extern int userCount;
 extern User users[100];
@@ -194,7 +195,8 @@ void LoadCarData()
     // Clear previous data
     memset(cars, 0, sizeof(cars));
 
-    while (fscanf(fptr, "%d|%99[^|]|%99[^|]|%99[^|]|%99[^|]|%99[^|]|%99[^|]|%f|%d|%d\n",
+    
+    while (fscanf(fptr, "%d|%99[^|]|%99[^|]|%99[^|]|%99[^|]|%99[^|]|%99[^|]|%f|%d|%d|",
                   &cars[i].id,
                   cars[i].pickup,
                   cars[i].dropoff,
@@ -206,6 +208,25 @@ void LoadCarData()
                   &cars[i].seatAvailable,
                   &cars[i].TotalSeat) == 10)
     {
+        cars[i].seatStatus = malloc(cars[i].TotalSeat * sizeof(char *));
+        if (!cars[i].seatStatus)
+        {
+            printf("Memory error.\n");
+            break;
+        }
+
+        for (int j = 0; j < cars[i].TotalSeat; j++)
+        {
+            cars[i].seatStatus[j] = malloc(2 * sizeof(char));
+            if (!cars[i].seatStatus[j])
+            {
+                printf("Memory error.\n");
+                break;
+            }
+
+            fscanf(fptr, "%1[^,\n]", cars[i].seatStatus[j]); // read "0" or "1"
+            fscanf(fptr, "%*c");                             // consume ',' or '\n'
+        }
         i++;
     }
 
@@ -235,7 +256,11 @@ void UpdateCarData()
                 cars[i].TotalSeat);
         for (int j = 0; j < cars[i].TotalSeat; j++)
         {
-            fprintf(f, "%d,", cars[i].seatStatus[j]);
+            fprintf(f, "%s", cars[i].seatStatus[j]);
+            if (j < cars[i].TotalSeat - 1)
+            {
+                fprintf(f, ",");
+            }
         }
         fprintf(f, "\n");
     }
@@ -265,7 +290,10 @@ void CarSave(Car *u){
             u->TotalSeat
     );
     for(int i=0; i<u->TotalSeat; i++) {
-        fprintf(f, "%d,", u->seatStatus[i]);
+        fprintf(f, "%s", u->seatStatus[i]);
+        if(i<u->TotalSeat-1) {
+            fprintf(f, ",");
+        }
     }
     fprintf(f, "\n");
 

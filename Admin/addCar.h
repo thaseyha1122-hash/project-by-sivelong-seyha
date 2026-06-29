@@ -3,6 +3,8 @@
 #include "../struct.h"
 #include "../Data.h"
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 extern Car cars[10];
 extern int carCount;
@@ -15,20 +17,29 @@ void addCar(){
     printf("Dropoff location : "); scanf(" %[^\n]",u->dropoff); getchar();
     printf("Travel Time Period : ");   scanf(" %[^\n]", u->travelTime); getchar();
     printf("Pickup Time (HH-MM-SS) : ");    scanf(" %[^\n]",u->pickupTime); getchar();
-    printf("Drop Time (HH-MM-SS) : "); scanf("%[^\n]",u->dropTime); getchar();
+    printf("Drop Time (HH-MM-SS) : "); scanf(" %[^\n]",u->dropTime); getchar();
     printf("Model : "); scanf(" %[^\n]", u->model); getchar();
     printf("Price : "); scanf("%f", &u->price); getchar();
     printf("Total Seat Available : ");  scanf(" %d", &u->seatAvailable); getchar();
 
     u->id = 001 + carCount;
     u->TotalSeat = u->seatAvailable;
-    u->seatStatus = (int*)malloc(u->TotalSeat * sizeof(int));
-    if(u->seatStatus == NULL) {
-        printf("Failed.");
+    u->seatStatus = malloc(u->TotalSeat * sizeof(char *));
+    if (!u->seatStatus)
+    {
+        printf("Memory error.\n");
         return;
     }
-    for(int i=0; i<u->TotalSeat; i++) {
-        u->seatStatus[i] = 0;
+
+    for (int i = 0; i < u->TotalSeat; i++)
+    {
+        u->seatStatus[i] = malloc(2 * sizeof(char));
+        if (!u->seatStatus[i])
+        {
+            printf("Memory error.\n");
+            return;
+        }
+        strcpy(u->seatStatus[i], "0");
     }
     // free(u->seatStatus);
     // u->seatStatus = 0;
