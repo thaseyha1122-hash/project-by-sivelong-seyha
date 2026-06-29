@@ -19,24 +19,16 @@ void display_car_seats() {
     printf("Enter car's ID( 0 : back ) : ");
     scanf("%d", &id);
 
-    // if (id == 0) return;
+    if (id == 0) return;
 
-    // int index = -1;
-    // for (int i = 0; i < carCount; i++) {
-    //     if (cars[i].id == id) {
-    //         index = i;
-    //         break;
-    //     }
-    // }
-
-    // if (index == -1) {
-    //     printf("Car not found.\n");
-    //     return;
-    // }
-
-    int index;
+    int index = -1;
     for (int i=0; i<carCount; i++) {
-        if(id == cars[i].id) index = i;
+        if(id == cars[i].id) {index = i; break;}
+    }
+    if (index == -1)
+    {
+        printf("Car not found.\n");
+        return;
     }
     for(int i = 0; i <cars[index].TotalSeat ; i++){
         if(i ==0 ){
