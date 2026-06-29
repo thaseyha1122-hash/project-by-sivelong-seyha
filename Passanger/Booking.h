@@ -16,10 +16,24 @@ int car_index;
 void display_car_seats() {
     LoadCarData();
     int id;
-    printf("Enter car's ID( 0 : back ) : "); scanf("%d",&id);
-    if (id == 0) {
+    printf("Enter car's ID( 0 : back ) : ");
+    scanf("%d", &id);
+
+    if (id == 0) return;
+
+    int index = -1;
+    for (int i = 0; i < carCount; i++) {
+        if (cars[i].id == id) {
+            index = i;
+            break;
+        }
+    }
+
+    if (index == -1) {
+        printf("Car not found.\n");
         return;
     }
+<<<<<<< HEAD
     int index;
     for (int i=0; i<carCount; i++) {
         if(id == cars[i].id) index = i;
@@ -54,6 +68,24 @@ void booking() {
     c[0] = users[loggedInuser].gender[0]; c[1] = '\0';
     strcpy(cars[car_index].seatStatus[index - 1], c);
     UpdateCarData();
+=======
+
+    Car *selectedCar = &cars[index];
+    for (int i = 0; i < selectedCar->TotalSeat; i++) {
+        if (i == 0) {
+            printf(" [ D ]\n");
+        }
+        if (selectedCar->seatStatus != NULL && selectedCar->seatStatus[i] == 0) {
+            printf("[ %d: O ]  ", i + 1);
+        } else {
+            printf("[ %d: X ]  ", i + 1);
+        }
+        if ((i + 1) % 2 == 0) {
+            printf("\n\n");
+        }
+    }
+    
+>>>>>>> b861d00ea5241fb8bdff4422256c930db815cc71
 }
 
 
