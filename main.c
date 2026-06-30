@@ -9,10 +9,14 @@ User users[100];
 int userCount = 0;
 int loggedInuser = -1;
 int carCount = 0;
+History history[100];
+int historyCount = 0;
 
 Car cars[10];  // just add
 
 int main(){
+    LoadHistoryCount();
+    LoadHistory();
     LoadUserCount();
     LoadData();
     LoadcarCount();

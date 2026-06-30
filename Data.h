@@ -11,6 +11,8 @@ extern int userCount;
 extern User users[100];
 extern int carCount;
 extern Car cars[10];
+extern int historyCount;
+extern History history[100];
 // extern int seatCount;
 
 // Save data seat
@@ -304,15 +306,83 @@ void CarSave(Car *u){
 
 // User booking history
 
-void history(History *u) {
-    FILE *f = fopen("Passenger/BokingHistory.csv", "a");
+void SaveHistoryCount()
+{
+    FILE *fptr = fopen("HistoryCount.csv", "w");
+    if (!fptr)
+    {
+        printf("Warning: could not history count.\n");
+        return;
+    }
+    fprintf(fptr, "%d", historyCount);
+    fclose(fptr);
+}
+
+void LoadHistoryCount()
+{
+    FILE *fptr = fopen("HistoryCount.csv", "r");
+    if (!fptr)
+    {
+        historyCount = 0;
+        return;
+    }
+    fscanf(fptr, "%d", &historyCount);
+    fclose(fptr);
+}
+
+void LoadHistory()
+{
+    FILE *fptr = fopen("BokingHistory.csv", "r");
+    {
+        historyCount = 0;
+        memset(history, 0, sizeof(history));
+        return;
+    }
+    int i = 0;
+
+    // Clear previous data
+    memset(history, 0, sizeof(history));
+
+    while (fscanf(fptr, "%d|%99[^|]|%99[^|]|%99[^|]|%99[^|]|%99[^|]|%f|%99[^|]|%d",
+                  &history[i].id,
+                  history[i].pickup,
+                  history[i].dropoff,
+                  history[i].travelTime,
+                  history[i].pickupTime,
+                  history[i].dropTime,
+                  history[i].model,
+                  &history[i].price,
+                  &history[i].seatStatus) == 9)
+    {
+        i++;
+    }
+
+    historyCount = i;
+    fclose(fptr);
+}
+
+void historySave(History *u) {
+    FILE *f = fopen("BokingHistory.csv", "a");
     if (!f)
     {
-        printf("Warning: could not save data.\n");
+        printf("Warning: could not save history data.\n");
         return;
     }
 
-    fprintf("");
+    fprintf(f, "%d|%s|%s|%s|%s|%s|%.2f|%s|%d\n",
+            u->id,
+            u->pickup,
+            u->dropoff,
+            u->pickupTime,
+            u->dropTime,
+            u->model,
+            u->price,
+            u->travelTime,
+            u->seatStatus);
+    fclose(f);
+    historyCount++;
+    SaveHistoryCount();
+
 }
 
 

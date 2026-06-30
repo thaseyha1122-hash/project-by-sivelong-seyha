@@ -57,7 +57,7 @@ typedef struct{
     float price;
     char travelTime[20];
     int seatStatus;
-    char date[50];
+    //char date[50];
 } History;
 
 #endif

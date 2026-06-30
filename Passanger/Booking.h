@@ -11,6 +11,8 @@ extern int carCount;
 extern Car cars[10];
 extern int loggedInuser;
 extern User users[100];
+extern int historyCount;
+extern History history[100];
 
 int car_index;
 
@@ -49,6 +51,8 @@ void display_car_seats() {
 }
 
 void booking() {
+    LoadHistoryCount();
+    LoadHistory();
     LoadData();
     display_car_seats();
 
@@ -56,31 +60,43 @@ void booking() {
 
     int index;
     printf("Enter chair number to book : "); scanf("%d", &index);
-    //cars[car_index].seatStatus[index-1] = "1";
+    History *u = &history[historyCount];
+    u->id = users[loggedInuser].id;
+    strcpy(u->pickup, cars[car_index].pickup);
+    strcpy(u->dropoff, cars[car_index].dropoff);
+    strcpy(u->pickupTime, cars[car_index].pickupTime);
+    strcpy(u->dropTime, cars[car_index].dropTime);
+    strcpy(u->model, cars[car_index].model);
+    u->price = cars[car_index].price;
+    strcpy(u->travelTime, cars[car_index].travelTime);
+    u->seatStatus = index;
+    
+
     char c[2];
     c[0] = users[loggedInuser].gender[0]; c[1] = '\0';
     strcpy(cars[car_index].seatStatus[index - 1], c);
+
+    historySave(u);
     UpdateCarData();
 
-
-    // Car *selectedCar = &cars[index];
-    // for (int i = 0; i < selectedCar->TotalSeat; i++) {
-    //     if (i == 0) {
-    //         printf(" [ D ]\n");
-    //     }
-    //     if (selectedCar->seatStatus != NULL && selectedCar->seatStatus[i] == 0) {
-    //         printf("[ %d: O ]  ", i + 1);
-    //     } else {
-    //         printf("[ %d: X ]  ", i + 1);
-    //     }
-    //     if ((i + 1) % 2 == 0) {
-    //         printf("\n\n");
-    //     }
-    // }
     
-
 }
 
 
 
 #endif
+
+// Car *selectedCar = &cars[index];
+// for (int i = 0; i < selectedCar->TotalSeat; i++) {
+//     if (i == 0) {
+//         printf(" [ D ]\n");
+//     }
+//     if (selectedCar->seatStatus != NULL && selectedCar->seatStatus[i] == 0) {
+//         printf("[ %d: O ]  ", i + 1);
+//     } else {
+//         printf("[ %d: X ]  ", i + 1);
+//     }
+//     if ((i + 1) % 2 == 0) {
+//         printf("\n\n");
+//     }
+// }
