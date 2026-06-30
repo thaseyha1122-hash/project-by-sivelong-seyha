@@ -302,5 +302,18 @@ void CarSave(Car *u){
     SavecarCount();
 }
 
+// User booking history
+
+void history(History *u) {
+    FILE *f = fopen("Passenger/BokingHistory.csv", "a");
+    if (!f)
+    {
+        printf("Warning: could not save data.\n");
+        return;
+    }
+
+    fprintf("");
+}
+
 
 #endif
