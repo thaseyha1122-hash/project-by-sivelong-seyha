@@ -198,8 +198,9 @@ void LoadCarData()
     memset(cars, 0, sizeof(cars));
 
     
-    while (fscanf(fptr, "%d|%99[^|]|%99[^|]|%99[^|]|%99[^|]|%99[^|]|%99[^|]|%f|%d|%d|",
+    while (fscanf(fptr, "%d|%d|%99[^|]|%99[^|]|%99[^|]|%99[^|]|%99[^|]|%99[^|]|%f|%d|%d|",
                   &cars[i].id,
+                  &cars[i].idDriver,
                   cars[i].pickup,
                   cars[i].dropoff,
                   cars[i].travelTime,
@@ -208,7 +209,7 @@ void LoadCarData()
                   cars[i].model,
                   &cars[i].price,
                   &cars[i].seatAvailable,
-                  &cars[i].TotalSeat) == 10)
+                  &cars[i].TotalSeat) == 11)
     {
         cars[i].seatStatus = malloc(cars[i].TotalSeat * sizeof(char *));
         if (!cars[i].seatStatus)
@@ -245,8 +246,9 @@ void UpdateCarData()
         return;
     }
     for (int i=0; i<carCount; i++) {
-        fprintf(f, "%03d|%s|%s|%s|%s|%s|%s|%.2f|%d|%d|",
+        fprintf(f, "%03d|%d|%s|%s|%s|%s|%s|%s|%.2f|%d|%d|",
                 cars[i].id,
+                cars[i].idDriver,
                 cars[i].pickup,
                 cars[i].dropoff,
                 cars[i].travelTime,
@@ -279,8 +281,9 @@ void CarSave(Car *u){
         return;
     }
 
-    fprintf(f, "%03d|%s|%s|%s|%s|%s|%s|%.2f|%d|%d|",
+    fprintf(f, "%03d|%d|%s|%s|%s|%s|%s|%s|%.2f|%d|%d|",
             u->id,
+            u->idDriver,
             u->pickup,
             u->dropoff,
             u->travelTime,
@@ -385,5 +388,30 @@ void historySave(History *u) {
 
 }
 
+void UpdateHistory()
+{
+    FILE *f = fopen("BookingHistory.csv", "w");
+    if (!f)
+    {
+        printf("Warning: could not save data.\n");
+        return;
+    }
+    for (int i = 0; i < historyCount; i++)
+    {
+        fprintf(f, "%d|%s|%s|%s|%s|%s|%.2f|%s|%d\n",
+                history[i].id,
+                history[i].pickup,
+                history[i].dropoff,
+                history[i].pickupTime,
+                history[i].dropTime,
+                history[i].model,
+                history[i].price,
+                history[i].travelTime,
+                history[i].seatStatus);
+    }
+
+    fclose(f);
+    SaveHistoryCount();
+}
 
 #endif

@@ -1,5 +1,5 @@
-
-
+#ifndef ADDDRIVER_H
+#define ADDDRIVER_H
 #include "../struct.h"
 #include <stdio.h>
 #include "../Data.h"
@@ -9,6 +9,8 @@ extern int userCount;
 
 void addDriver()
 {
+    LoadUserCount();
+    LoadData();
     if (userCount >= 100)
     {
         printf("\nError: User limit reached! Cannot register more users.\n");
@@ -27,9 +29,10 @@ void addDriver()
     printf("Enter Phone Number : ");
     scanf("%19s", u->phone);
     getchar();
-    printf("Enter car model : ");
-    scanf("%19s", u->modelCar);
-    getchar();
+    strcpy(u->modelCar, "N/A");
+    // printf("Enter car model : ");
+    // scanf("%19s", u->modelCar);
+    // getchar();
     for (int i = 0; i < userCount; i++)
     {
         if (strcmp(users[i].phone, u->phone) == 0)
@@ -51,3 +54,5 @@ void addDriver()
     SaveData(u);
     printf("\nRegistration successful! \n");
 }
+
+#endif

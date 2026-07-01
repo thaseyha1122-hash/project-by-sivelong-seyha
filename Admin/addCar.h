@@ -21,6 +21,7 @@ void addCar(){
     printf("Model : "); scanf(" %[^\n]", u->model); getchar();
     printf("Price : "); scanf("%f", &u->price); getchar();
     printf("Total Seat Available : ");  scanf(" %d", &u->seatAvailable); getchar();
+    printf("Enter driver's ID : "); scanf("%d", &u->idDriver);getchar();
 
     u->id = 001 + carCount;
     u->TotalSeat = u->seatAvailable;

@@ -60,6 +60,13 @@ void booking() {
 
     int index;
     printf("Enter chair number to book : "); scanf("%d", &index);
+
+    if(users[loggedInuser].balance < cars[car_index].price) {
+        printf("Please top up your balance first.\n");
+        return;
+    }
+    users[loggedInuser].balance -= cars[car_index].price;
+
     History *u = &history[historyCount];
     u->id = users[loggedInuser].id;
     strcpy(u->pickup, cars[car_index].pickup);
@@ -71,7 +78,6 @@ void booking() {
     strcpy(u->travelTime, cars[car_index].travelTime);
     u->seatStatus = index;
     
-
     char c[2];
     c[0] = users[loggedInuser].gender[0]; c[1] = '\0';
     strcpy(cars[car_index].seatStatus[index - 1], c);
@@ -82,21 +88,22 @@ void booking() {
     
 }
 
+// void cancleBooking() {
+//     LoadHistoryCount();
+//     LoadHistory();
+//     LoadData();
+//     display_car_seats();
+
+//     for (int i=0; i<historyCount; i++) {
+//         if(history[i].id == users[loggedInuser].id) {
+//             printff("");
+//         }
+//     }
+    
+//     UpdateCarData();
+// }
+
 
 
 #endif
 
-// Car *selectedCar = &cars[index];
-// for (int i = 0; i < selectedCar->TotalSeat; i++) {
-//     if (i == 0) {
-//         printf(" [ D ]\n");
-//     }
-//     if (selectedCar->seatStatus != NULL && selectedCar->seatStatus[i] == 0) {
-//         printf("[ %d: O ]  ", i + 1);
-//     } else {
-//         printf("[ %d: X ]  ", i + 1);
-//     }
-//     if ((i + 1) % 2 == 0) {
-//         printf("\n\n");
-//     }
-// }

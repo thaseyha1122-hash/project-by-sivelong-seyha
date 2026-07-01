@@ -21,19 +21,20 @@ typedef struct
 } User;
 
 
-typedef struct {
-    int bookingID;
-    int userID;
-    char pickupLocation[100];
-    char dropoffLocation[100];
-    char pickupTime[20];
-    float fare;
-    int status; // 0: Pending, 1: Confirmed, 2: Completed, 3: Cancelled
-} Booking;
+// typedef struct {
+//     int bookingID;
+//     int userID;
+//     char pickupLocation[100];
+//     char dropoffLocation[100];
+//     char pickupTime[20];
+//     float fare;
+//     int status; // 0: Pending, 1: Confirmed, 2: Completed, 3: Cancelled
+// } Booking;
  
 
 typedef struct{
     int id;
+    int idDriver;
     char pickup[50];
     char dropoff[50];
     char pickupTime[20];       // start time

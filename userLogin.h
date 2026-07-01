@@ -11,6 +11,7 @@
 #include "Passanger/passangerMenu.h"
 #include "Admin/adminMenu.h"
 #include "Admin/addCar.h"
+#include "Driver/driverMenu.h"
 extern User users[100];
 extern int userCount;
 extern int loggedInuser;
@@ -52,7 +53,6 @@ void login(){
         free(pass);
         phone = NULL;
         pass = NULL;
-        // return;
         login();
     }
     loggedInuser = tmp;
@@ -70,9 +70,15 @@ void login(){
         pass = NULL;
         return;
     }
-    // else if(users[loggedInuser].role == DRIVER) {
-    //     passangerMenu();
-    // }
+    else if(users[loggedInuser].role == DRIVER) {
+        printf("\nLogin Successfully\n");
+        driverMenu();
+        free(phone);
+        free(pass);
+        phone = NULL;
+        pass = NULL;
+        return;
+    }
     else{
         printf("\nLogin Successfully\n");
     
